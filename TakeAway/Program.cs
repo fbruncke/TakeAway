@@ -37,8 +37,25 @@ public class Program
 
         });
 
+        app.MapPost("/order", (Order order) => {
+            order.Id = orders.Count + 1;
+            orders.Add(order);
+
+            return JsonSerializer.Serialize(order);
+        
+        });
+
+        app.MapPost("/menu", (Item item) => {
+            item.Id = menu.Count+1;
+            menu.Add(item);
+
+            return JsonSerializer.Serialize(item);
+
+        });
+
         app.Run();
     }
+
 
     private static void BuildMenu()
     {
